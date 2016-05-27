@@ -1,27 +1,19 @@
-# vuejs-test
+# 构建
 
-> A Vue.js project
+- [使用Vue构建中(大)型应用 - SPA](https://segmentfault.com/a/1190000004706690)
+- [Vue构建单页应用最佳实战一](http://div.io/topic/1701)
+- [Vue构建单页应用最佳实战二](http://div.io/topic/1728)
 
-## Build Setup
+# Fetch
+- [传统 Ajax 已死，Fetch 永生](https://github.com/camsong/blog/issues/2)
 
-``` bash
-# install dependencies
-npm install
+# Mock Server
+- [你是如何构建 Web 前端 Mock Server 的？](https://www.zhihu.com/question/35436669)
+- [前端的 mock server](https://annatarhe.github.io/2016/05/21/mock-server-in-front-end.html)
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 项目
 
-# build for production with minification
-npm run build
+- [HackerNews clone with Vue.js 带你入门项目](https://github.com/vuejs/vue-hackernews)
+- [基于vue.js重写Cnodejs.org社区的webapp](https://github.com/shinygang/Vue-cnodejs)
 
-# run unit tests
-npm run unit
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

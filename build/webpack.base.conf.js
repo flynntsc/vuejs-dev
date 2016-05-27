@@ -34,6 +34,9 @@ module.exports = {
             include: projectRoot,
             exclude: /node_modules/
         }, {
+            test: /vux.src.*?js$/,
+            loader: 'babel'
+        }, {
             test: /\.json$/,
             loader: 'json'
         }, {
