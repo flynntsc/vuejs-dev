@@ -16,7 +16,8 @@ module.exports = {
         proxyTable: {
             // proxy all requests starting with /api to jsonplaceholder
             '/api': {
-                target: 'http://jsonplaceholder.typicode.com',
+            	// http://jsonplaceholder.typicode.com or http://api.icndb.com/jokes/random
+                target: 'http://localhost:3000',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

@@ -95,7 +95,10 @@ export default {
             },
             // 客户名称search
             getResult(item) {
-                this.results = getAjaxData(this.searchVal)
+                // this.results = getAjaxData(this.searchVal)
+                fetch('/api/userlist').then(res => res.json()).then(data => {
+                    this.results = data;
+                }).catch(err => console.log(err))
             },
             resultClick(val) {
                 this.userName = val.title;
@@ -105,20 +108,27 @@ export default {
             },
             // 表单提交
             submitForm() {
-
+                var postobj = {
+                    'title': 'Flyntse',
+                    'num': '9898989898',
+                }
+                this.$http.post('/api/getdata', postobj)
                 this.$router.go('/main')
             },
         },
         ready() {
-            // Ajax获取
-            this.$http.get('/api/posts/2').then(res => {
-                console.log(res.data)
-                this.business = res.data.title || '';
-            }, err => {
-                console.log(err)
-            })
-            // this.business = '张阿三';
-            this.taskNum = '12390371283123'
+            // Ajax获取数据
+            fetch('/api/getdata').then(res => res.json()).then(data => {
+                this.business = data.title || '';
+                this.taskNum = data.num + '' || '';
+            }).catch(err => console.log(err))
+
+            // this.$http.get('/api/getdata').then(res => {
+            //     console.log(res)
+            //     this.business = res.data.title || '';
+            // }, err => {
+            //     console.log(err)
+            // })
         },
         components: {
             XHeader,
@@ -130,21 +140,6 @@ export default {
             XButton,
             Search,
         },
-}
-
-function getAjaxData(val) {
-    const arr = [{
-        title: '张三',
-        tel: '13433943324',
-        address: '福建省 泉州市 南安县',
-        business: '张小三',
-    }, {
-        title: '李斯',
-        tel: '13938243324',
-        address: '福建省 泉州市 永春县',
-        business: '张小三02',
-    }]
-    return arr;
 }
 </script>
 <style>
