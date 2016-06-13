@@ -14,16 +14,25 @@ export default function (router) {
                 require(['./views/index.vue'], resolve);
             }
         },
+        // 客户管理
         '/main': {
             name: 'main',
             component: function (resolve) {
                 require(['./views/main.vue'], resolve);
             }
         },
-        '/fast_sign': {
-            name: 'fast_sign',
+        // 快速签到
+        '/fast-sign': {
+            name: 'fast-sign',
             component: function (resolve) {
-                require(['./views/fast_sign.vue'], resolve);
+                require(['./views/fast-sign.vue'], resolve);
+            }
+        },
+        // 任务列表
+        '/task-list': {
+            name: 'task-list',
+            component: function (resolve) {
+                require(['./views/task-list.vue'], resolve);
             }
         },
     })

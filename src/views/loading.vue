@@ -1,12 +1,19 @@
 <template>
-    <div class="loading">
-        <spinner></spinner>
-    </div>
+    <loading :show="isShow"></loading>
 </template>
 
 <script>
+import {
+    Loading,
+} from 'vux/src/components';
+
 export default {
-    ready() {
+    data() {
+            return {
+                isShow: true
+            }
+        },
+        ready() {
             setTimeout(() => {
                 this.$route.router.go({
                     name: 'main'
@@ -14,14 +21,8 @@ export default {
             }, 1000);
         },
         components: {
-            spinner: require('vux/src/components/spinner')
+            Loading,
         }
 }
 </script>
-<style lang="scss">
-.loading {
-	width:100%;
-    text-align: center;
-    margin: 50px auto 0;
-}
-</style>
+<style></style>

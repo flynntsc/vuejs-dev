@@ -1,5 +1,5 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:''}">客户管理</x-header>
+    <x-header :left-options="{showBack:false}">客户管理</x-header>
     <div class="g-bg">
         <cell link="http://cn.bing.com">
             <span slot="after-title">客户列表</span>
@@ -10,10 +10,10 @@
         <cell link="#link03">
             <span slot="after-title">逾期提醒（{{pass_num}}）</span>
         </cell>
-        <cell link="#link04">
+        <cell link="/task-list">
             <span slot="after-title">任务管理</span>
         </cell>
-        <cell link="/fast_sign">
+        <cell link="/fast-sign">
             <span slot="after-title">快速签到</span>
         </cell>
     </div>
