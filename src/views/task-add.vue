@@ -1,5 +1,10 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:'客户管理'}">快速签到</x-header>
+    <x-header :left-options="{showBack:true,backText:'返回'}">新建任务</x-header>
+
+    <group title="任务信息">
+        <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
+        <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
+    </group>
 
     <group title="客户信息" v-if="isEveryday">
         <x-input title="客户名称" readonly required placeholder="请点击选择" :value.sync='userName' :show-clear="false" @click="getUser"></x-input>
@@ -14,25 +19,15 @@
         <x-input title="业务代表" readonly :value.sync="business" :show-clear="false"></x-input>
     </group>
 
-    <group title="任务信息">
-        <x-input title="任务编号" readonly :value.sync="taskNum" :show-clear="false"></x-input>
-        <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
-        <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
-    </group>
-
-    <group title="执行情况描述">
+    <group title="任务描述">
         <x-textarea></x-textarea>
     </group>
 
-    <group title="现场图片">
-        <upload></upload>
-    </group>
-
     <div class="weui_btn_area">
-        <x-button type="primary" @click="submitForm">签到并完成</x-button>
+        <x-button type="primary" @click="submitForm">提交</x-button>
     </div>
 
-    <search v-ref:search class="m-fastsign-search" :results="results" :value.sync="searchVal" @on-change="getResult" @result-click="resultClick"></search>
+    <search v-ref:search :results="results" :value.sync="searchVal" @on-change="getResult" @result-click="resultClick"></search>
 </template>
 
 <script>
@@ -46,8 +41,6 @@ import {
     XButton,
     Search,
 } from 'vux/src/components';
-
-import Upload from './../components/upload/index.vue'
 
 const today = new Date();
 const minYear = today.getFullYear();
@@ -68,7 +61,6 @@ export default {
                     value: '潜在客户'
                 }],
                 business: '',
-                taskNum: '',
                 dpText: '请选择日期',
                 minYear: minYear,
                 maxYear: maxYear,
@@ -116,7 +108,6 @@ export default {
             // Ajax获取数据
             this.$http.get('/api/getdata').then(res => {
                 this.business = res.data.title || '';
-                this.taskNum = '' + res.data.num || '';
             }, err => console.log(err))
         },
         components: {
@@ -128,7 +119,6 @@ export default {
             Datetime,
             XButton,
             Search,
-            Upload,
         },
 }
 </script>
@@ -139,11 +129,11 @@ export default {
 </style>
 <style scoped>
 
-.m-fastsign-search {
+.vux-search-box {
     display: none;
 }
 
-.m-fastsign-search.vux-search-fixed {
+.vux-search-box.vux-search-fixed {
     display: block;
 }
 </style>

@@ -35,5 +35,19 @@ export default function (router) {
                 require(['./views/task-list.vue'], resolve);
             }
         },
+        // 新建任务
+        '/task-add': {
+            name: 'task-add',
+            component: function (resolve) {
+                require(['./views/task-add.vue'], resolve);
+            }
+        },
+        // 任务详情
+        '/task-detail': {
+            name: 'task-detail',
+            component: function (resolve) {
+                require(['./views/task-detail.vue'], resolve);
+            }
+        },
     })
 }
