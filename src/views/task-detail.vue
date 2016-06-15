@@ -3,14 +3,14 @@
 
     <group title="客户信息">
         <cell :value="taskInfo.userName">
-            <div slot="icon" style="white-space: nowrap;">客户名称</div>
+            <div slot="icon" style="white-space: nowrap;margin-right:5px;">客户名称</div>
         </cell>
         <cell title="客户手机" :value="taskInfo.userTel"></cell>
         <cell :value="taskInfo.userAddress">
-            <div slot="icon" style="white-space: nowrap;">客户地址</div>
+            <div slot="icon" style="white-space: nowrap;margin-right:5px;">客户地址</div>
         </cell>
         <cell :value="taskInfo.userPos">
-            <div slot="icon" style="white-space: nowrap;">客户位置</div>
+            <div slot="icon" style="white-space: nowrap;margin-right:5px;">客户位置</div>
         </cell>
         <cell title="签到时间" :value="taskInfo.userDate"></cell>
         <cell title="客户状态" :value="taskInfo.userStat"></cell>
@@ -22,7 +22,7 @@
         <cell title="任务主题" :value="taskInfo.taskType"></cell>
         <cell title="计划时间" :value="taskInfo.taskDate"></cell>
         <cell :value="taskInfo.taskDec">
-            <div slot="icon" style="white-space: nowrap;">任务描述</div>
+            <div slot="icon" style="white-space: nowrap;margin-right:5px;">任务描述</div>
         </cell>
         <cell title="任务状态" :value="taskInfo.taskSign"></cell>
         <cell title="创建人" :value="taskInfo.taskWho"></cell>
@@ -30,7 +30,7 @@
 
     <group title="执行情况">
         <cell :value="taskInfo.taskTxt">
-            <div slot="icon" style="white-space: nowrap;">情况描述</div>
+            <div slot="icon" style="white-space: nowrap;margin-right:5px;">情况描述</div>
         </cell>
         <cell>
             <div slot="icon" style="white-space: nowrap;">现场图片</div>

@@ -1,5 +1,5 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:'客户管理'}">
+    <x-header :left-options="{showBack:true,backText:'返回'}">
         <selector class="m-hdsel" value="0" :options='whoList' @on-change="tabChange"></selector>
     </x-header>
 

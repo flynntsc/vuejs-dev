@@ -1,5 +1,5 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:'客户管理'}">快速签到</x-header>
+    <x-header :left-options="{showBack:true,backText:'返回'}">快速签到</x-header>
 
     <group title="客户信息" v-if="isEveryday">
         <x-input title="客户名称" readonly required placeholder="请点击选择" :value.sync='userName' :show-clear="false" @click="getUser"></x-input>

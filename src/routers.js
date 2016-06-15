@@ -21,11 +21,18 @@ export default function (router) {
                 require(['./views/main.vue'], resolve);
             }
         },
-        // 快速签到
-        '/fast-sign': {
-            name: 'fast-sign',
+        // 今日提醒
+        '/remind-today': {
+            name: 'remind-today',
             component: function (resolve) {
-                require(['./views/fast-sign.vue'], resolve);
+                require(['./views/remind-today.vue'], resolve);
+            }
+        },
+        // 逾期提醒
+        '/remind-overdue': {
+            name: 'remind-overdue',
+            component: function (resolve) {
+                require(['./views/remind-overdue.vue'], resolve);
             }
         },
         // 任务列表
@@ -47,6 +54,13 @@ export default function (router) {
             name: 'task-detail',
             component: function (resolve) {
                 require(['./views/task-detail.vue'], resolve);
+            }
+        },
+        // 快速签到
+        '/fast-sign': {
+            name: 'fast-sign',
+            component: function (resolve) {
+                require(['./views/fast-sign.vue'], resolve);
             }
         },
     })
