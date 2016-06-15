@@ -1,37 +1,40 @@
 <template>
     <x-header :left-options="{showBack:true,backText:'客户管理'}">快速签到</x-header>
+
     <div class="g-bg">
+        <form id="myform">
+            <group title="客户信息" v-if="isEveryday">
+                <x-input title="客户名称" readonly required placeholder="请点击选择" :value.sync='userName' :show-clear="false" @click="getUser"></x-input>
+                <x-input title="手机号码" readonly placeholder="无需输入" :value.sync='userTel' :show-clear="false"></x-input>
+                <x-input title="客户地址" readonly placeholder="无需输入" :value.sync='userAddress' :show-clear="false"></x-input>
+                <x-input title="业务代表" readonly placeholder="无需输入" :value.sync='userBusiness' :show-clear="false"></x-input>
+            </group>
+            <group title="客户信息" v-else>
+                <x-input title="客户名称" required placeholder="请手动输入"></x-input>
+                <x-input title="手机号码" required placeholder="请手动输入"></x-input>
+                <x-input title="客户地址" required placeholder="请手动输入"></x-input>
+                <x-input title="业务代表" readonly :value.sync="business" :show-clear="false"></x-input>
+            </group>
 
-        <group title="客户信息" v-if="isEveryday">
-            <x-input title="客户名称" readonly required placeholder="请点击选择" :value.sync='userName' :show-clear="false" @click="getUser"></x-input>
-            <x-input title="手机号码" readonly placeholder="无需输入" :value.sync='userTel' :show-clear="false"></x-input>
-            <x-input title="客户地址" readonly placeholder="无需输入" :value.sync='userAddress' :show-clear="false"></x-input>
-            <x-input title="业务代表" readonly placeholder="无需输入" :value.sync='userBusiness' :show-clear="false"></x-input>
-        </group>
-        <group title="客户信息" v-else>
-            <x-input title="客户名称" required placeholder="请手动输入"></x-input>
-            <x-input title="手机号码" required placeholder="请手动输入"></x-input>
-            <x-input title="客户地址" required placeholder="请手动输入"></x-input>
-            <x-input title="业务代表" readonly :value.sync="business" :show-clear="false"></x-input>
-        </group>
+            <group title="任务信息">
+                <x-input title="任务编号" readonly :value.sync="taskNum" :show-clear="false"></x-input>
+                <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
+                <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
+            </group>
 
-        <group title="任务信息">
-            <x-input title="任务编号" readonly :value.sync="taskNum" :show-clear="false"></x-input>
-            <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
-            <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
-        </group>
+            <group title="执行情况描述">
+                <x-textarea></x-textarea>
+            </group>
 
-        <group title="执行情况描述">
-            <x-textarea></x-textarea>
-        </group>
-
-        <group title="现场图片">
-            <x-input title="选择文件"></x-input>
-        </group>
+            <group title="现场图片">
+                <x-input title="选择文件"></x-input>
+            </group>
+        </form>
 
         <div class="weui_btn_area">
-            <x-button type="primary">签到并完成</x-button>
+            <x-button type="primary" @click="submitForm">签到并完成</x-button>
         </div>
+
         <search v-ref:search :results="results" :value.sync="searchVal" @on-change="getResult" @result-click="resultClick"></search>
     </div>
 </template>
@@ -55,10 +58,10 @@ const maxYear = today.getFullYear() + 1;
 export default {
     data() {
             return {
-            	userName: '',
-            	userTel: '',
-            	userAddress: '',
-            	userBusiness: '',
+                userName: '',
+                userTel: '',
+                userAddress: '',
+                userBusiness: '',
                 list: [{
                     key: 'rcbf',
                     value: '日常拜访'
@@ -95,15 +98,26 @@ export default {
                 this.results = getAjaxData(this.searchVal)
             },
             resultClick(val) {
-            	this.userName = val.title;
-            	this.userTel = val.tel;
-            	this.userAddress = val.address;
-            	this.userBusiness = val.business;
+                this.userName = val.title;
+                this.userTel = val.tel;
+                this.userAddress = val.address;
+                this.userBusiness = val.business;
+            },
+            // 表单提交
+            submitForm() {
+
+                this.$router.go('/main')
             },
         },
         ready() {
             // Ajax获取
-            this.business = '张阿三';
+            this.$http.get('/api/posts/2').then(res => {
+                console.log(res.data)
+                this.business = res.data.title || '';
+            }, err => {
+                console.log(err)
+            })
+            // this.business = '张阿三';
             this.taskNum = '12390371283123'
         },
         components: {
