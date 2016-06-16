@@ -10,31 +10,50 @@ function eachFn(fn, num = 20) {
     }
     return arr;
 }
+
 // 数组随机选一个
 Array.prototype.random = function () {
     return this[Math.random() * this.length | 0]
 };
 
+// 常用数据
+const myName = () => faker.name.findName();
+const myTel = () => faker.phone.phoneNumber();
+const myNum = () => faker.random.number({ max: 9999999999, min: 1000000000 });
+const myPrice = () => faker.random.number({ max: 9999, min: 0 });
+const myDay = () => faker.random.number({ max: 99, min: 0 });
+const myAddress = () => faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName();
+const myCompany = () => faker.name.firstName() + faker.name.lastName() + '有限公司';
+const myWords = () => faker.random.words();
+const myImg = (num = 100) => 'http://temp.im/' + num;
+const myDate = () => {
+    let now = Date.now();
+    now += Math.random() * 10000000 | 0;
+    now = new Date(now);
+    return now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay();
+}
+
 // 随机筛选数据
 const types = ['日常拜访', '潜在客户']
 const stats = ['待执行', '执行中', '已完成', '已取消'];
 const signs = ['已签到', '']
+const iboolean = [true, false]
 
 // 用户列表数据
 function userList() {
     return {
-        title: faker.name.firstName() + faker.name.lastName(),
-        tel: faker.phone.phoneNumber() + '',
-        address: faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName(),
-        business: faker.name.firstName() + faker.name.lastName(),
+        title: myName(),
+        tel: myTel(),
+        address: myAddress(),
+        business: myName(),
     }
 }
 
 // 任务列表数据
 function taskList() {
     return {
-        num: faker.random.number({ max: 9999999999, min: 1000000000 }),
-        name: faker.name.firstName() + faker.name.lastName() + '有限公司',
+        num: myNum(),
+        name: myCompany(),
         type: types.random(),
         stat: stats.random(),
         sign: signs.random(),
@@ -43,23 +62,32 @@ function taskList() {
 // 任务详情数据
 function taskInfo() {
     return {
-        userName: faker.name.firstName() + faker.name.lastName(),
-        userTel: faker.phone.phoneNumberFormat(),
-        userAddress: faker.address.country() + faker.address.state()+faker.address.city(),
-        userPos: faker.address.country() + faker.address.state()+faker.address.city(),
-        userDate: faker.date.recent(),
+        userName: myName(),
+        userTel: myTel(),
+        userAddress: myAddress(),
+        userPos: myAddress(),
+        userDate: myDate(),
         userStat: stats.random(),
-        userWho: faker.name.firstName() + faker.name.lastName(),
+        userWho: myName(),
 
-        taskNum: ''+faker.random.number({ max: 9999999999, min: 1000000000 }),
+        taskNum: myNum(),
         taskType: types.random(),
-        taskDate: faker.date.recent(),
-        taskDec: faker.random.words(),
+        taskDate: myDate(),
+        taskDec: myWords(),
         taskSign: signs.random(),
-        taskWho: faker.name.firstName() + faker.name.lastName(),
+        taskWho: myName(),
 
-        taskTxt: faker.random.words(),
-        taskImg: 'http://temp.im/100',
+        taskTxt: myWords(),
+        taskImg: myImg(),
+    }
+}
+// 逾期提醒数据
+function overdue() {
+    return {
+        company: myCompany(),
+        type: myName(),
+        price: myPrice(),
+        day: myDay(),
     }
 }
 
@@ -68,14 +96,15 @@ module.exports = function () {
         // 快速签到
         'getdata': {
             id: 0,
-            title: faker.name.firstName() + faker.name.lastName(),
-            num: faker.random.number({ max: 9999999999, min: 1000000000 }),
-            img: 'http://temp.im/100'
+            title: myName(),
+            num: myNum(),
+            img: myImg(),
         },
         'userlist': eachFn(userList),
         // 任务管理
         'tasklist': eachFn(taskList),
         'taskinfo': taskInfo(),
+        'overdue': eachFn(overdue),
     }
     return data
 }
