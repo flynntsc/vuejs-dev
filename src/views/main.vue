@@ -1,13 +1,13 @@
 <template>
     <x-header :left-options="{showBack:false}">客户管理</x-header>
     <div class="g-bg">
-        <cell link="http://cn.bing.com">
+        <cell link="/user-list">
             <span slot="after-title">客户列表</span>
         </cell>
-        <cell link="#link02">
+        <cell link="/remind-today">
             <span slot="after-title">今日到期提醒（{{today_num}}）</span>
         </cell>
-        <cell link="#link03">
+        <cell link="/remind-overdue">
             <span slot="after-title">逾期提醒（{{pass_num}}）</span>
         </cell>
         <cell link="/task-list">

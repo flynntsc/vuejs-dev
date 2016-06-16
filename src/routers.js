@@ -21,6 +21,13 @@ export default function (router) {
                 require(['./views/main.vue'], resolve);
             }
         },
+        // 客户列表
+        '/user-list': {
+            name: 'user-list',
+            component: function (resolve) {
+                require(['./views/user-list.vue'], resolve);
+            }
+        },
         // 今日提醒
         '/remind-today': {
             name: 'remind-today',

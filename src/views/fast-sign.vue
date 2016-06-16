@@ -32,7 +32,7 @@
         <x-button type="primary" @click="submitForm">签到并完成</x-button>
     </div>
 
-    <search v-ref:search class="m-fastsign-search" :results="results" :value.sync="searchVal" @on-change="getResult" @result-click="resultClick"></search>
+    <search v-ref:search class="m-hide-search" :results="results" :value.sync="searchVal" @on-change="getResult" @result-click="resultClick"></search>
 </template>
 
 <script>
@@ -139,11 +139,11 @@ export default {
 </style>
 <style scoped>
 
-.m-fastsign-search {
+.m-hide-search {
     display: none;
 }
 
-.m-fastsign-search.vux-search-fixed {
+.m-hide-search.vux-search-fixed {
     display: block;
 }
 </style>
