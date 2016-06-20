@@ -20,7 +20,7 @@ Array.prototype.random = function () {
 const myName = () => faker.name.findName();
 const myTel = () => faker.phone.phoneNumber();
 const myNum = () => faker.random.number({ max: 9999999999, min: 1000000000 });
-const myPrice = () => faker.random.number({ max: 9999, min: 0 });
+const myNum2 = () => faker.random.number({ max: 9999, min: 0 });
 const myDay = () => faker.random.number({ max: 99, min: 0 });
 const myAddress = () => faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName();
 const myCompany = () => faker.name.firstName() + faker.name.lastName() + '有限公司';
@@ -39,13 +39,20 @@ const stats = ['待执行', '执行中', '已完成', '已取消'];
 const signs = ['已签到', '']
 const iboolean = [true, false]
 
+let i = 0;
+
 // 用户列表数据
 function userList() {
     return {
+        _id: ++i,
         title: myName(),
         tel: myTel(),
         address: myAddress(),
         business: myName(),
+        job: myName(),
+        isv: faker.random.boolean(),
+        userid: myNum2(),
+        taskid: myNum(),
     }
 }
 
@@ -86,7 +93,7 @@ function overdue() {
     return {
         company: myCompany(),
         type: myName(),
-        price: myPrice(),
+        price: myNum2(),
         day: myDay(),
     }
 }

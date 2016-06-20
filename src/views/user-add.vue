@@ -1,5 +1,5 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:'返回'}">客户列表
+    <x-header :left-options="{showBack:true,backText:'返回'}">客户新增
         <div class="m-schbtn" slot="right" @click="showSearch = true">搜索</div>
     </x-header>
 
