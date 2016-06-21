@@ -34,17 +34,17 @@ const myDate = () => {
 }
 
 // 随机筛选数据
-const types = ['日常拜访', '潜在客户']
+const types = ['日常拜访', '潜在客户'];
+const authentication = ['个人','营运车主','乘用车','物流企业','供应商'];
 const stats = ['待执行', '执行中', '已完成', '已取消'];
 const signs = ['已签到', '']
 const iboolean = [true, false]
 
-let i = 0;
+// let i = 0;
 
 // 用户列表数据
 function userList() {
     return {
-        _id: ++i,
         title: myName(),
         tel: myTel(),
         address: myAddress(),
@@ -53,6 +53,32 @@ function userList() {
         isv: faker.random.boolean(),
         userid: myNum2(),
         taskid: myNum(),
+    }
+}
+// 用户详情数据
+function userInfo() {
+    return {
+        userName: myName(),
+        userType: authentication.random(),
+        userPos: myAddress(),
+        userWho: myName(),
+        linkman: myName(),
+        linkTel: myTel(),
+        linkAddress: myAddress(),
+
+        fortuneSum: myNum2(),
+        fortuneBasic: myNum2(),
+        fortuneHlx: myNum2(),
+        fortuneJifen: myNum2(),
+
+        creditSum: myNum2(),
+        creditSuable: myNum2(),
+        creditRepay: myNum2(),
+        creditFrost: myNum2(),
+
+        overdueSum: myNum2(),
+        overdueSmall: myNum2(),
+        overdueGet: myNum2(),
     }
 }
 
@@ -108,6 +134,8 @@ module.exports = function () {
             img: myImg(),
         },
         'userlist': eachFn(userList),
+        // 用户详情
+        'userinfo': userInfo(),
         // 任务管理
         'tasklist': eachFn(taskList),
         'taskinfo': taskInfo(),

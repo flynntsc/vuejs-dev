@@ -6,7 +6,7 @@
     <div class="g-userhd">
         <cell>
             <div class="icon" slot="icon">客户总数：<span style="color:#ec6f26;">{{numSum}}</span>个</div>
-            <div class="f-fs14" @click="btnAdd">新增 +</div>
+            <div class="f-fs14" v-link="{path:'/user-add'}">新增 +</div>
         </cell>
         <!-- <cell>
             <div class="u-cellitem" slot="icon">已认证：{{numYes}}</div>
@@ -18,36 +18,34 @@
         <tab-item :selected="mytab === '1'" @click="mytab = '1'">已认证</tab-item>
         <tab-item :selected="mytab === '2'" @click="mytab = '2'">未认证</tab-item>
     </tab>
-    <!-- <group> -->
-        <scroller style="background:#fff;" v-ref:scroller :height="scrollHeight" lock-x>
-            <div class="g-scroller" v-show="!isLoad">
-                <div class="m-list" v-for="(i,list) in taskList">
-                    <div class="bd" @click="showBtn(i)">
-                        <flexbox>
-                            <flexbox-item :style="inheritStyle">{{list.title}}</flexbox-item>
-                            <flexbox-item class="f-tar"><span :class="[list.isv ? 'u-ico-v' : 'u-ico-what']"></span>{{list.job}}</flexbox-item>
-                        </flexbox>
-                        <flexbox>
-                            <flexbox-item :style="inheritStyle">手机：{{list.tel}}</flexbox-item>
-                            <flexbox-item class="f-tar"><span class="u-ico-up" :class="{'z-crt':list.isShow}"></span></flexbox-item>
-                        </flexbox>
-                        <flexbox>
-                            <flexbox-item>地址：{{list.address}}</flexbox-item>
-                        </flexbox>
-                    </div>
-                    <flexbox :class="['m-listfd',{'z-crt':list.isShow}]">
-                        <flexbox-item class="m-listfd-item" @click="btnDetail">查看详情</flexbox-item>
-                        <flexbox-item class="m-listfd-item" @click="btnPlan(list.userid)">添加计划</flexbox-item>
-                        <flexbox-item class="m-listfd-item" @click="btnTask">所有任务</flexbox-item>
+    <scroller style="background:#fff;" v-ref:scroller :height="scrollHeight" lock-x>
+        <div class="g-scroller" v-show="!isLoad">
+            <div class="m-list" v-for="(i,list) in taskList">
+                <div class="bd" @click="showBtn(i)">
+                    <flexbox>
+                        <flexbox-item :style="inheritStyle">{{list.title}}</flexbox-item>
+                        <flexbox-item class="f-tar"><span :class="[list.isv ? 'u-ico-v' : 'u-ico-what']"></span>{{list.job}}</flexbox-item>
+                    </flexbox>
+                    <flexbox>
+                        <flexbox-item :style="inheritStyle">手机：{{list.tel}}</flexbox-item>
+                        <flexbox-item class="f-tar"><span class="u-ico-up" :class="{'z-crt':list.isShow}"></span></flexbox-item>
+                    </flexbox>
+                    <flexbox>
+                        <flexbox-item>地址：{{list.address}}</flexbox-item>
                     </flexbox>
                 </div>
+                <flexbox :class="['m-listfd',{'z-crt':list.isShow}]">
+                    <flexbox-item class="m-listfd-item" @click="btnDetail">查看详情</flexbox-item>
+                    <flexbox-item class="m-listfd-item" @click="btnPlan(list.userid)">添加计划</flexbox-item>
+                    <flexbox-item class="m-listfd-item" @click="btnTask">所有任务</flexbox-item>
+                </flexbox>
             </div>
-            <div class="m-tip" v-show="isLoad">
-                <spinner></spinner>
-            </div>
-            <div class="m-tip" v-show="notData">暂无数据！</div>
-        </scroller>
-    <!-- </group> -->
+        </div>
+        <div class="m-tip" v-show="isLoad">
+            <spinner></spinner>
+        </div>
+        <div class="m-tip" v-show="notData">暂无数据！</div>
+    </scroller>
 
     <!-- 搜索 -->
     <actionsheet2 :show.sync="showSearch" :has-cancel="hasCancel">
@@ -75,17 +73,14 @@ import {
     Tab,
     TabItem,
     XSelect,
-    Search,
     Flexbox,
     FlexboxItem,
     Selector,
     Scroller,
     Spinner,
-    XButton,
     XInput,
     Datetime,
     Dialog,
-    Actionsheet,
     XTextarea,
 } from 'vux/src/components';
 import Actionsheet2 from '../components/actionsheet2/index.vue'
@@ -148,9 +143,6 @@ export default {
             }
         },
         methods: {
-            btnAdd() {
-                this.$router.go('/user-add');
-            },
             showBtn(i) {
                 this.taskList[i].isShow = !this.taskList[i].isShow;
                 this.$nextTick(() => {
@@ -203,17 +195,14 @@ export default {
             Tab,
             TabItem,
             XSelect,
-            Search,
             Flexbox,
             FlexboxItem,
             Selector,
             Scroller,
             Spinner,
-            XButton,
             XInput,
             Datetime,
             Dialog,
-            Actionsheet,
             Actionsheet2,
             XTextarea,
         },
