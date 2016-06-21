@@ -8,7 +8,7 @@
                 </div>
                 <div class="weui_uploader_bd">
                     <ul class="weui_uploader_files">
-                        <li @click="removeImg" class="weui_uploader_file" :class="classes" style="background-image:url(http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/)">
+                        <li @click="removeImg" class="weui_uploader_file" :class="classes" :style="styleBg">
                             <div v-show="inLists<1" class="weui_uploader_status_content">
                                 <i class="weui_icon_warn"></i>
                             </div>
@@ -34,30 +34,33 @@ export default {
             type: Number,
             default: 0,
         },
+        styleBg: {
+            type: String,
+            default: 'background-image:url(http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/)'
+        }
     },
     methods: {
         preview(event) {
-            const liFile = document.querySelector('.weui_uploader_file');
             const img = event.target.files[0];
             const reader = new FileReader();
 
             reader.addEventListener('load', () => {
-                liFile.style.backgroundImage = 'url(' + reader.result + ')';
+                this.styleBg = `background-image:url(${reader.result})`;
             })
             if (img) {
                 reader.readAsDataURL(img)
                 this.inLists = 1;
             }
         },
-        removeImg(event){
-        	this.inLists = 0;
-        	// 需删除input的图片
+        removeImg(event) {
+            this.inLists = 0;
+            // 需删除input的图片
         }
     },
-    computed:{
-    	classes(){
-    		return this.inLists < 1 ? 'weui_uploader_status' : ''
-    	}
+    computed: {
+        classes() {
+            return this.inLists < 1 ? 'weui_uploader_status' : ''
+        }
     }
 }
 </script>
