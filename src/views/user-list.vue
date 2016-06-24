@@ -35,7 +35,7 @@
                     </flexbox>
                 </div>
                 <flexbox :class="['m-listfd',{'z-crt':list.isShow}]">
-                    <flexbox-item class="m-listfd-item" @click="btnDetail">查看详情</flexbox-item>
+                    <flexbox-item class="m-listfd-item" @click="btnDetail(list.userid)">查看详情</flexbox-item>
                     <flexbox-item class="m-listfd-item" @click="btnPlan(list.userid)">添加计划</flexbox-item>
                     <flexbox-item class="m-listfd-item" @click="btnTask">所有任务</flexbox-item>
                 </flexbox>
@@ -152,8 +152,8 @@ export default {
             tabChange() {
                 console.log('tabChange');
             },
-            btnDetail() {
-                this.$router.go('/user-detail')
+            btnDetail(query) {
+                this.$router.go('/user-detail?user='+query)
             },
             btnPlan(id) {
                 console.log(id)

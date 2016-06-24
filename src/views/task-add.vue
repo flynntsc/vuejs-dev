@@ -3,7 +3,7 @@
 
     <group title="任务信息">
         <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
-        <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
+        <calendar :value.sync="doneTime" title="执行时间" disable-past></calendar>
     </group>
 
     <group title="客户信息" v-if="isEveryday">
@@ -37,14 +37,10 @@ import {
     XInput,
     Selector,
     XTextarea,
-    Datetime,
     XButton,
     Search,
+    Calendar,
 } from 'vux/src/components';
-
-const today = new Date();
-const minYear = today.getFullYear();
-const maxYear = today.getFullYear() + 1;
 
 export default {
     data() {
@@ -61,9 +57,7 @@ export default {
                     value: '潜在客户'
                 }],
                 business: '',
-                dpText: '请选择日期',
-                minYear: minYear,
-                maxYear: maxYear,
+                doneTime: 'TODAY',
                 isEveryday: true,
                 results: [],
                 searchVal: '',
@@ -116,9 +110,9 @@ export default {
             XInput,
             Selector,
             XTextarea,
-            Datetime,
             XButton,
             Search,
+            Calendar,
         },
 }
 </script>

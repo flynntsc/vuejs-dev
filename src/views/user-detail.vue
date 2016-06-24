@@ -83,6 +83,7 @@ export default {
                     marginRight: '5px',
                 },
                 userInfo: {
+                	userId: '',
                     userName: '',
                     userType: '',
                     userPos: '',
@@ -109,10 +110,11 @@ export default {
         },
         methods: {
             editBtn() {
-                this.$router.go('/user-add');
+                this.$router.go('/user-add?user='+this.userId);
             }
         },
         ready() {
+        	this.userId = this.$route.query.user;
             this.$http.get('/api/userinfo').then(res => {
                 Object.assign(this.userInfo, res.data)
             }, error => console.error(err))
@@ -127,7 +129,7 @@ export default {
         },
 }
 </script>
-<style lang="scss">
+<style>
 .g-body {
     background-color: #fbf9fe;
 }

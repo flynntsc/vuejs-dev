@@ -2,7 +2,15 @@
 
 export default function (router) {
 	router.map({
+		// 截取判断再跳转页面
 		'/': {
+			name: 'home',
+			component: function (resolve) {
+				require(['./views/loading.vue'], resolve);
+			}
+		},
+		// 加载
+		'/loading': {
 			name: 'loading',
 			component: function (resolve) {
 				require(['./views/loading.vue'], resolve);
@@ -12,6 +20,13 @@ export default function (router) {
 			name: 'index',
 			component: function (resolve) {
 				require(['./views/index.vue'], resolve);
+			}
+		},
+		// 登录页面
+		'/login': {
+			name: 'login',
+			component: function (resolve) {
+				require(['./views/login.vue'], resolve);
 			}
 		},
 		// 客户管理
@@ -35,11 +50,18 @@ export default function (router) {
 				require(['./views/user-detail.vue'], resolve);
 			}
 		},
-		// 客户新增
+		// 客户新增/编辑
 		'/user-add': {
 			name: 'user-add',
 			component: function (resolve) {
 				require(['./views/user-add.vue'], resolve);
+			}
+		},
+		// 客户新增步骤2
+		'/user-add-step': {
+			name: 'user-add-step',
+			component: function (resolve) {
+				require(['./views/user-add-step.vue'], resolve);
 			}
 		},
 		// 今日提醒

@@ -17,7 +17,7 @@
     <group title="任务信息">
         <x-input title="任务编号" readonly :value.sync="taskNum" :show-clear="false"></x-input>
         <selector title="业务主题" value="rcbf" :options='list' @on-change="selChange"></selector>
-        <datetime :value.sync="dpText" :min-year='minYear' :max-year="maxYear" title="执行时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" confirm-text="完成" cancel-text="取消"></datetime>
+        <calendar :value.sync="doneTime" title="执行时间" disable-past></calendar>
     </group>
 
     <group title="执行情况描述">
@@ -45,13 +45,10 @@ import {
     Datetime,
     XButton,
     Search,
+    Calendar,
 } from 'vux/src/components';
 
 import Upload from './../components/upload/index.vue'
-
-const today = new Date();
-const minYear = today.getFullYear();
-const maxYear = today.getFullYear() + 1;
 
 export default {
     data() {
@@ -69,9 +66,7 @@ export default {
                 }],
                 business: '',
                 taskNum: '',
-                dpText: '请选择日期',
-                minYear: minYear,
-                maxYear: maxYear,
+                doneTime: 'TODAY',
                 isEveryday: true,
                 results: [],
                 searchVal: '',
@@ -129,6 +124,7 @@ export default {
             XButton,
             Search,
             Upload,
+            Calendar,
         },
 }
 </script>
@@ -138,7 +134,6 @@ export default {
 }
 </style>
 <style scoped>
-
 .m-hide-search {
     display: none;
 }

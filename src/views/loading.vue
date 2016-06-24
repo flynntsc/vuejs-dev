@@ -13,12 +13,13 @@ export default {
                 isShow: true
             }
         },
-        ready() {
-            setTimeout(() => {
-                this.$route.router.go({
-                    name: 'main'
-                })
-            }, 1000);
+        created(){
+            const isIn = localStorage.getItem('isIn') || false;
+            if (isIn) {
+                this.$route.router.go('/main')
+            }else{
+                this.$route.router.go('/login')
+            }
         },
         components: {
             Loading,
