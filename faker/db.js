@@ -22,6 +22,19 @@ const myTel = () => faker.phone.phoneNumber();
 const myNum = () => faker.random.number({ max: 9999999999, min: 1000000000 });
 const myNum2 = () => faker.random.number({ max: 9999, min: 0 });
 const myDay = () => faker.random.number({ max: 99, min: 0 });
+const myArea = ()=> {
+	var arr = [];
+	arr.push(faker.address.state())
+	arr.push(faker.address.cityPrefix() + faker.address.citySuffix())
+	arr.push(faker.address.city())
+	return arr;
+};
+const myArea2 = ()=> {
+	var arr = [];
+	arr.push(faker.address.state())
+	arr.push(faker.address.city())
+	return arr;
+};
 const myAddress = () => faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName();
 const myCompany = () => faker.name.firstName() + faker.name.lastName() + '有限公司';
 const myWords = () => faker.random.words();
@@ -34,11 +47,15 @@ const myDate = () => {
 }
 
 // 随机筛选数据
+const rank = ['企业','个人'];
 const types = ['日常拜访', '潜在客户'];
 const authentication = ['个人','营运车主','乘用车','物流企业','供应商'];
+const motorCat = ['综合物流'];
+const favorable = ['特惠积分','月结积分（柴油）','月结积分（汽油）','月结积分（柴汽油）','月结']
 const stats = ['待执行', '执行中', '已完成', '已取消'];
 const signs = ['已签到', '']
-const iboolean = [true, false]
+const iBoolean = [true, false]
+const isNeed = ['需要','不需要']
 
 // let i = 0;
 
@@ -58,13 +75,21 @@ function userList() {
 // 用户详情数据
 function userInfo() {
     return {
-        userName: myName(),
-        userType: authentication.random(),
-        userPos: myAddress(),
-        userWho: myName(),
-        linkman: myName(),
-        linkTel: myTel(),
-        linkAddress: myAddress(),
+    	userRank: rank.random(), // 客户类型
+        userName: myName(), // 客户名称
+        userType: authentication.random(), // 认证类型
+        userPos: myArea2(), // 业务区域 - 省市
+        userWho: myName(), // 业务代表
+        userTel: myTel(), // 手机号码
+        isSms: isNeed.random(), // 是否接收短信
+        motorCat: motorCat.random(), // 车队分类
+        favorable: favorable.random(), // 优惠方式
+
+
+        linkman: myName(), // 联系人
+        linkTel: myTel(), // 联系电话
+        linkArea: myArea(), // 联系地址 - 省市县
+        linkAddress: myAddress(), // 详细地址
 
         fortuneSum: myNum2(),
         fortuneBasic: myNum2(),

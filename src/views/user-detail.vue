@@ -1,5 +1,8 @@
 <template>
-    <x-header :left-options="{showBack:true,backText:'返回'}">客户详情</x-header>
+    <x-header v-ref:xheader :left-options="{showBack:false}">
+        客户详情
+        <span class="vux-header-back" slot="left" @click="goBack">返回</span>
+    </x-header>
 
     <group title="基础信息">
         <cell>
@@ -83,7 +86,7 @@ export default {
                     marginRight: '5px',
                 },
                 userInfo: {
-                	userId: '',
+                    userId: '',
                     userName: '',
                     userType: '',
                     userPos: '',
@@ -110,11 +113,14 @@ export default {
         },
         methods: {
             editBtn() {
-                this.$router.go('/user-add?user='+this.userId);
-            }
+                this.$router.go('/user-edit?user=' + this.userId);
+            },
+            goBack() {
+                this.$router.go('/user-list');
+            },
         },
         ready() {
-        	this.userId = this.$route.query.user;
+            this.userId = this.$route.query.user;
             this.$http.get('/api/userinfo').then(res => {
                 Object.assign(this.userInfo, res.data)
             }, error => console.error(err))
@@ -135,7 +141,7 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-.weui_cells_title + .m-gtg{
-	margin-top:-10px;
+.weui_cells_title + .m-gtg {
+    margin-top: -10px;
 }
 </style>

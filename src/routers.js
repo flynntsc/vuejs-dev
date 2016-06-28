@@ -50,7 +50,14 @@ export default function (router) {
 				require(['./views/user-detail.vue'], resolve);
 			}
 		},
-		// 客户新增/编辑
+		// 客户编辑
+		'/user-edit': {
+			name: 'user-edit',
+			component: function (resolve) {
+				require(['./views/user-edit.vue'], resolve);
+			}
+		},
+		// 客户新增
 		'/user-add': {
 			name: 'user-add',
 			component: function (resolve) {
