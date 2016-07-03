@@ -22,18 +22,18 @@ const myTel = () => faker.phone.phoneNumber();
 const myNum = () => faker.random.number({ max: 9999999999, min: 1000000000 });
 const myNum2 = () => faker.random.number({ max: 9999, min: 0 });
 const myDay = () => faker.random.number({ max: 99, min: 0 });
-const myArea = ()=> {
-	var arr = [];
-	arr.push(faker.address.state())
-	arr.push(faker.address.cityPrefix() + faker.address.citySuffix())
-	arr.push(faker.address.city())
-	return arr;
+const myArea = () => {
+    var arr = [];
+    arr.push(faker.address.state())
+    arr.push(faker.address.cityPrefix() + faker.address.citySuffix())
+    arr.push(faker.address.city())
+    return arr;
 };
-const myArea2 = ()=> {
-	var arr = [];
-	arr.push(faker.address.state())
-	arr.push(faker.address.city())
-	return arr;
+const myArea2 = () => {
+    var arr = [];
+    arr.push(faker.address.state())
+    arr.push(faker.address.city())
+    return arr;
 };
 const myAddress = () => faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName();
 const myCompany = () => faker.name.firstName() + faker.name.lastName() + '有限公司';
@@ -47,15 +47,17 @@ const myDate = () => {
 }
 
 // 随机筛选数据
-const rank = ['企业','个人'];
+const rank = ['企业', '个人'];
 const types = ['日常拜访', '潜在客户'];
-const authentication = ['个人','营运车主','乘用车','物流企业','供应商'];
+const authentication = ['个人', '营运车主', '乘用车', '物流企业', '供应商'];
 const motorCat = ['综合物流'];
-const favorable = ['特惠积分','月结积分（柴油）','月结积分（汽油）','月结积分（柴汽油）','月结']
+const favorable = ['特惠积分', '月结积分（柴油）', '月结积分（汽油）', '月结积分（柴汽油）', '月结'] // 优惠方式
 const stats = ['待执行', '执行中', '已完成', '已取消'];
+const certType = ['身份证', '护照', '港澳通行证', '台胞证', '其他'];
+const certType2 = ['三证分离（传统）', '三证合一（一码）', '三证分离（多码）']; // 企业证件类型
 const signs = ['已签到', '']
 const iBoolean = [true, false]
-const isNeed = ['需要','不需要']
+const isNeed = ['需要', '不需要']
 
 // let i = 0;
 
@@ -75,7 +77,7 @@ function userList() {
 // 用户详情数据
 function userInfo() {
     return {
-    	userRank: rank.random(), // 客户类型
+        userRank: rank.random(), // 客户类型
         userName: myName(), // 客户名称
         userType: authentication.random(), // 认证类型
         userPos: myArea2(), // 业务区域 - 省市
@@ -90,6 +92,22 @@ function userInfo() {
         linkTel: myTel(), // 联系电话
         linkArea: myArea(), // 联系地址 - 省市县
         linkAddress: myAddress(), // 详细地址
+
+        // 个人
+        // 认证类型已有
+        realName: myName(), // 真实姓名
+        idNumber: myNum(), // 身份证号
+        inCompany: myCompany(), // 挂靠企业
+
+        // 企业
+        companyName: myCompany(), // 企业名称
+        legalWho: myName(), // 法人代表
+        legalType: certType.random(), // 法人证件类型
+        legalNum: myName(),  // 法人证件号码
+        companyCert: certType2.random(), // 企业证件类型
+        companyNum1: myNum(), // 企业执照号
+        companyNum2: myNum(), // 组织机构代码证号
+        companyNum3: myNum(), // 税务登记证号
 
         fortuneSum: myNum2(),
         fortuneBasic: myNum2(),

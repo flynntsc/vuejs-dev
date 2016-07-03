@@ -75,7 +75,7 @@ export default {
         },
         ready() {
             this.$http.get('/api/taskinfo').then(res => {
-                Object.assign(this.taskInfo, res.data)
+                this.taskInfo = Object.assign({},this.taskInfo, res.data)
             }, error => console.error(err))
         },
         components: {

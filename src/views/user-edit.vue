@@ -82,7 +82,7 @@ export default {
             // 用户id再请求对应数据
             this.userId = this.$route.query.user;
             this.$http.get('/api/userinfo').then(res => {
-                Object.assign(this.userInfo, res.data)
+                this.userInfo = Object.assign({},this.userInfo, res.data)
 
                 // address赋值
                 this.userPos = this.userInfo.userPos.join(' ')
@@ -95,8 +95,8 @@ export default {
                 this.userInfo.linkArea = val2name(this.linkArea)
 
                 // 验证判断
-                if(false){
-                	return;
+                if (false) {
+                    return;
                 }
                 this.$router.go('/user-detail?user=' + this.userId)
             },

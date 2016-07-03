@@ -122,7 +122,7 @@ export default {
         ready() {
             this.userId = this.$route.query.user;
             this.$http.get('/api/userinfo').then(res => {
-                Object.assign(this.userInfo, res.data)
+                this.userInfo = Object.assign({},this.userInfo, res.data)
             }, error => console.error(err))
         },
 
