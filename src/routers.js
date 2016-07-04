@@ -29,6 +29,7 @@ export default function (router) {
 				require(['./views/login.vue'], resolve);
 			}
 		},
+		// 客户、信息、任务
 		// 客户管理
 		'/main': {
 			name: 'main',
@@ -111,6 +112,49 @@ export default function (router) {
 			name: 'fast-sign',
 			component: function (resolve) {
 				require(['./views/fast-sign.vue'], resolve);
+			}
+		},
+		// 业务协作...
+		// 油卡业务
+		'/gascard': {
+			name: 'gascard',
+			component: function (resolve) {
+				require(['./views/gascard.vue'], resolve);
+			}
+		},
+		// 油卡管理/列表
+		'/gascard-list': {
+			name: 'gascard-list',
+			component: function (resolve) {
+				require(['./views/gascard-list.vue'], resolve);
+			}
+		},
+		// 油卡详情
+		'/gascard-detail': {
+			name: 'gascard-detail',
+			component: function (resolve) {
+				require(['./views/gascard-detail.vue'], resolve);
+			}
+		},
+		// 油卡新增
+		'/gascard-add': {
+			name: 'gascard-add',
+			component: function (resolve) {
+				require(['./views/gascard-add.vue'], resolve);
+			}
+		},
+		// 小额授信
+		'/mincredit': {
+			name: 'mincredit',
+			component: function (resolve) {
+				require(['./views/mincredit.vue'], resolve);
+			}
+		},
+		// 油卡工本费账单
+		'/gascard-bill': {
+			name: 'gascard-bill',
+			component: function (resolve) {
+				require(['./views/gascard-bill.vue'], resolve);
 			}
 		},
 	})

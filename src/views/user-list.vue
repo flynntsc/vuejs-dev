@@ -166,7 +166,7 @@ export default {
                 this.showPlan = false;
             },
         },
-        compiled() {
+        created() {
             this.scrollHeight = window.screen.height - 132 + 'px';
         },
         ready() {
@@ -174,6 +174,8 @@ export default {
                 if (!res.data.length) {
                     return this.notData = true;
                 }
+
+                // 可改进
                 res.data.map((v, i) => {
                     return Object.assign(v, {
                         isShow: false

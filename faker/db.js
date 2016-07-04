@@ -36,6 +36,8 @@ const myArea2 = () => {
     return arr;
 };
 const myAddress = () => faker.address.state() + ' ' + faker.address.city() + ' ' + faker.address.streetName();
+const myState = () => faker.address.state();
+const myAbbr = () => faker.address.stateAbbr();
 const myCompany = () => faker.name.firstName() + faker.name.lastName() + '有限公司';
 const myWords = () => faker.random.words();
 const myImg = (num = 100) => 'http://temp.im/' + num;
@@ -44,6 +46,9 @@ const myDate = () => {
     now += Math.random() * 10000000 | 0;
     now = new Date(now);
     return now.getFullYear() + '-' + now.getMonth() + '-' + now.getDay();
+}
+const myPlate = () => {
+    return myAbbr() + myNum2();
 }
 
 // 随机筛选数据
@@ -55,9 +60,11 @@ const favorable = ['特惠积分', '月结积分（柴油）', '月结积分（�
 const stats = ['待执行', '执行中', '已完成', '已取消'];
 const certType = ['身份证', '护照', '港澳通行证', '台胞证', '其他'];
 const certType2 = ['三证分离（传统）', '三证合一（一码）', '三证分离（多码）']; // 企业证件类型
+const cardType = ['挂失', '申请解挂失', '申请换卡', '申请退卡', '正常', '禁用', '退卡']; // 油卡状态
 const signs = ['已签到', '']
 const iBoolean = [true, false]
 const isNeed = ['需要', '不需要']
+const isHave = ['有', '无']
 
 // let i = 0;
 
@@ -72,6 +79,11 @@ function userList() {
         isv: faker.random.boolean(),
         userid: myNum2(),
         taskid: myNum(),
+
+        userPos: myArea2(), // 业务区域 - 省市
+        favorable: favorable.random(), // 优惠方式
+        isAgree: isHave.random(), // 车队燃料服务管理协议
+
     }
 }
 // 用户详情数据
@@ -103,7 +115,7 @@ function userInfo() {
         companyName: myCompany(), // 企业名称
         legalWho: myName(), // 法人代表
         legalType: certType.random(), // 法人证件类型
-        legalNum: myName(),  // 法人证件号码
+        legalNum: myName(), // 法人证件号码
         companyCert: certType2.random(), // 企业证件类型
         companyNum1: myNum(), // 企业执照号
         companyNum2: myNum(), // 组织机构代码证号
@@ -166,6 +178,17 @@ function overdue() {
         day: myDay(),
     }
 }
+// 油卡列表
+function gascardList() {
+    return {
+        gascardId: myNum2() + '',
+        gascardName: myCompany(),
+        gascardNum: myNum() + '',
+        gascardState: myState(),
+        gascardPlate: myPlate(),
+        gascardType: cardType.random(),
+    }
+}
 
 module.exports = function () {
     let data = {
@@ -183,6 +206,8 @@ module.exports = function () {
         'tasklist': eachFn(taskList),
         'taskinfo': taskInfo(),
         'overdue': eachFn(overdue),
+        // 油卡分配
+        'gascardlist': eachFn(gascardList),
     }
     return data
 }

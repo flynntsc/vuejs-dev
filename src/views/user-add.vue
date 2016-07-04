@@ -81,7 +81,7 @@ export default {
             if (!!storageObj) {
                 this.userPos = storageObj.userPos || []
                 this.linkArea = storageObj.linkArea || []
-                this.userInfo = Object.assign({},this.userInfo, storageObj)
+                this.userInfo = Object.assign({}, this.userInfo, storageObj)
             }
 
             // 业务代表默认值
@@ -93,7 +93,8 @@ export default {
                 // 省市值转换
                 this.userInfo.userPos = val2name(this.userPos)
                 this.userInfo.linkArea = val2name(this.linkArea)
-                    // 缓存以便后续使用
+
+                // 缓存以便后续使用
                 let storageStr = JSON.stringify(this.userInfo)
                 sessionStorage.setItem('userAddData', storageStr)
 

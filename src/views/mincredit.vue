@@ -39,13 +39,13 @@
 
         <group v-show="tabShow.tab3" transition="move2left">
             <div class="g-bg">
-                <cell link="/gascard">
+                <cell link="/#">
                     <span slot="after-title">加油卡业务</span>
                 </cell>
-                <cell link="/mincredit">
+                <cell link="/#">
                     <span slot="after-title">小额授信</span>
                 </cell>
-                <cell link="/gascard-bill">
+                <cell link="/#">
                     <span slot="after-title">油卡工本费账单</span>
                 </cell>
             </div>
