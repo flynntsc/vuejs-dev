@@ -5,6 +5,7 @@
 npm run dev
 npm run mock
 ```
+[http://localhost:8080/](http://localhost:8080/)
 
 # 构建
 
