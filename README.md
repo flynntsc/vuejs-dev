@@ -1,11 +1,20 @@
 # Usage
 
+nodejs版本6.2.2+
+
+```
+npm i
+```
+
+```
+npm run mock
+```
 
 ```
 npm run dev
-npm run mock
 ```
-[http://localhost:8080/](http://localhost:8080/)
+
+访问地址：[http://localhost:8080/](http://localhost:8080/)
 
 # 构建
 
